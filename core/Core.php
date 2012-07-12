@@ -1,8 +1,9 @@
 <?php
 class Core
 {
+    public static $config;
+    
     protected $_uri;
-    protected $_config;
     protected $start_time;
 
 
@@ -10,8 +11,8 @@ class Core
     {
 	$this->includes();
 	$this->start_time=microtime(true);
-	$this->_uri=Loader::load_class('Uri', SYS);
-	$this->_config=require CONFIG.'main'.EXT;
+	$this->_uri=&Loader::getClass('Uri', SYS);
+	self::$config=require CONFIG.'main'.EXT;
     }
     
     private function includes()
@@ -34,7 +35,7 @@ class Core
 	echo '<table>
                   <tr>
 		      <td>Generation time : </td>
-		      <td>'.number_format(microtime(true)-$this->start_time, 4).'</td>
+		      <td>'.number_format(microtime(true)-$this->start_time, 4).' sec</td>
 		  </tr>
 		  <tr>
 		      <td>Memory use : </td>
