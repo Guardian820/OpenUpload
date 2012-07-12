@@ -8,6 +8,12 @@ class View extends AbstractComponent
 
 
     public $pageTitle;
+    
+    public function __get($name) {
+	if(isset($this->_vars[$name]))
+	    return $this->_vars[$name];
+	return Loader::getClass($name, SYS.'helpers/');
+    }
 
 
     public function __construct($file, $folder, array $vars = array())

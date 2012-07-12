@@ -1,5 +1,5 @@
 <?php
-class Output
+class Output extends AbstractComponent
 {
     protected $_view;
     protected $layout='layout.php';
@@ -10,6 +10,12 @@ class Output
     public function setLayout($name)
     {
 	$this->layout=$name;
+    }
+    
+    public function __get($name) {
+	if(isset($this->_vars[$name]))
+	    return $this->_vars[$name];
+	return Loader::getClass($name, SYS.'helpers/');
     }
     
     public function view($name, $folder = '',array $vars = array())

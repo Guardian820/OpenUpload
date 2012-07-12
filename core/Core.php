@@ -14,7 +14,7 @@ class Core
 	$this->autoloading();
 	$this->start_time=microtime(true);
 	$this->_uri=&Loader::getClass('Uri', SYS);
-	$this->_output=&Loader::getClass('Output', SYS);
+	$this->_output=&Loader::getClass('Output', SYS.'components/');
     }
     
     //toutes les inclusions nécesaires

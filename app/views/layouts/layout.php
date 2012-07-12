@@ -5,8 +5,8 @@
 <title><?php echo $this->pageTitle?></title>
 <meta name="keywords" content="VOIP Company, css template, free web design layout" />
 <meta name="description" content="VOIP Company, css template, free web design layout from TemplateMo.com" />
-<?php echo Loader::getClass('assetHelper')->css('style')?>
-<?php echo Loader::getClass('assetHelper')->css('tabcontent')?>
+<?php echo $this->assetHelper->css('style')?>
+<?php echo $this->assetHelper->css('tabcontent')?>
 
 </head>
 <body>
