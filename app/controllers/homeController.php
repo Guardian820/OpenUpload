@@ -3,6 +3,6 @@ class homeController extends Controller
 {
     public function indexAction()
     {
-	echo('classe chargee avec succes !');
+	$this->output->view('index', 'home');
     }
 }

@@ -4,6 +4,7 @@ class Core
     public static $config;
     
     protected $_uri;
+    protected $_output;
     protected $start_time;
 
 
@@ -12,6 +13,7 @@ class Core
 	$this->includes();
 	$this->start_time=microtime(true);
 	$this->_uri=&Loader::getClass('Uri', SYS);
+	$this->_output=&Loader::getClass('Output', SYS);
     }
     
     //toutes les inclusions nécesaires
@@ -21,7 +23,7 @@ class Core
 	require_once 'Loader'.EXT;
 	require_once 'components/AbstractComponent'.EXT;
 	require_once 'components/Controller'.EXT;
-	
+	require_once 'components/View'.EXT;
     }
 
 
@@ -58,5 +60,10 @@ class Core
 		      <td>'.memory_get_usage().' Kb</td>
 		  </tr>
 	      </table>';
+    }
+    
+    public function display()
+    {
+	$this->_output->display();
     }
 }
