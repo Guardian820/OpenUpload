@@ -25,7 +25,8 @@ class View extends AbstractComponent
 	ob_start();
 	extract($this->vars);
 	include $this->path.$this->file;
-	$this->content=ob_end_flush();
+	$this->content=ob_get_contents();
+	ob_end_clean();
     }
     
     public function getContent()

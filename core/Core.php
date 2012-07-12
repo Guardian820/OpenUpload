@@ -11,6 +11,7 @@ class Core
     public function __construct()
     {
 	$this->includes();
+	$this->autoloading();
 	$this->start_time=microtime(true);
 	$this->_uri=&Loader::getClass('Uri', SYS);
 	$this->_output=&Loader::getClass('Output', SYS);
@@ -24,6 +25,12 @@ class Core
 	require_once 'components/AbstractComponent'.EXT;
 	require_once 'components/Controller'.EXT;
 	require_once 'components/View'.EXT;
+    }
+    
+    private function autoloading()
+    {
+	foreach(self::$config['autoloading'] as $class => $path)
+	    Loader::load_class($class, $path);
     }
 
 
