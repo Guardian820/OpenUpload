@@ -1,10 +1,12 @@
 <?php
 class Loader
 {
-    const NO_FILE=0;
-    const NO_CLASS=1;
-    const NO_METHOD=2;
-    
+    const NO_FILE=10;
+    const NO_CLASS=11;
+    const NO_METHOD=12;
+    const LOADED=13;
+
+
     public static $loaded_class=array();
     
     public static function load_class($class, $path)
@@ -18,6 +20,7 @@ class Loader
 	if(!class_exists($class))
 	    return self::NO_CLASS;
 	self::$loaded_class[$class]=new $class;
+	return self::LOADED;
     }
     
     public static function &getClass($class, $path='')
@@ -26,8 +29,10 @@ class Loader
 	    return self::$loaded_class[$class];
 	else
 	{
-	    self::load_class($class, $path);
-	    return self::$loaded_class[$class];
+	    if(($state=self::load_class($class, $path))===self::LOADED)
+		return self::$loaded_class[$class];
+	    else
+		return $state;
 	}
     }
     
@@ -39,11 +44,11 @@ class Loader
 
     public static function load_page($controller, $method, array $vars)
     {
-	$controller=self::load_class($controller.'Controller', APP.'controllers/');
+	$controller=self::getClass($controller.'Controller', APP.'controllers/');
 	if(!is_object($controller))
 	    return $controller;
-	if(!call_user_func_array(array($controller,$method), $vars))
+	if(call_user_func_array(array($controller,$method.'Action'), $vars)===false)
 	    return self::NO_METHOD;
-	return true;
+	return self::LOADED;
     }
 }

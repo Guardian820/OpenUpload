@@ -21,6 +21,4 @@ try{
 {
     $e->getMessage();
 }
-
-var_dump(Core::$config);
 $app->benchmarks();

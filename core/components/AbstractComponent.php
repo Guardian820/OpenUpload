@@ -1,5 +1,5 @@
 <?php
-class AbstractComponents
+class AbstractComponent
 {
     protected $_config;
     protected $_vars=array();
@@ -15,12 +15,21 @@ class AbstractComponents
 	if(isset($this->_vars[$name]))
 	    return $this->_vars[$name];
 	if($name==='db')
+	{
 	    Loader::initDbConnection ();
-	return $this->_vars['db'];
+	    return $this->_vars['db'];
+	}
+	return false;
     }
     
     public function __set($name, $value)
     {
 	$this->_vars[$name]=$value;
+    }
+    
+    //plus pratique d'écrire $this->load... qui Loader::getClass...
+    protected function &load($class, $path)
+    {
+	return Loader::getClass($class, $path);
     }
 }

@@ -12,21 +12,37 @@ class Core
 	$this->includes();
 	$this->start_time=microtime(true);
 	$this->_uri=&Loader::getClass('Uri', SYS);
-	self::$config=require CONFIG.'main'.EXT;
     }
     
+    //toutes les inclusions nécesaires
     private function includes()
     {
+	self::$config=require CONFIG.'main'.EXT;
 	require_once 'Loader'.EXT;
-	//require_once 'Controller'.EXT;
+	require_once 'components/AbstractComponent'.EXT;
+	require_once 'components/Controller'.EXT;
+	
     }
 
 
     public function run()
     {
-	if(($error=Loader::load_page($this->_uri->controller, $this->_uri->method, $this->_uri->vars) !== true))
+	if(($state=Loader::load_page($this->_uri->controller, $this->_uri->method, $this->_uri->vars)) !== Loader::LOADED)
 	{
-	    echo 'erreur !';
+	    switch($state)
+	    {
+		case Loader::NO_FILE:
+		    echo 'Fichier inexistant !';
+		    break;
+		case Loader::NO_CLASS:
+		    echo 'Class inexistante !';
+		    break;
+		case Loader::NO_METHOD:
+		    echo 'Method inexistante !';
+		    break;
+		default :
+		    echo 'Erreur inconnue !';
+	    }
 	}
     }
     
