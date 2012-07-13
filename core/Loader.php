@@ -35,12 +35,6 @@ class Loader
 		return $state;
 	}
     }
-    
-    public static function initDbConnection()
-    {
-	$conf=Core::$config;
-	self::$loaded_class['db']=new PDO($conf['dsn'], $conf['user'], $conf['pass']);
-    }
 
     public static function load_page($controller, $method, array $vars)
     {
@@ -50,5 +44,5 @@ class Loader
 	if(call_user_func_array(array($controller,$method.'Action'), $vars)===false)
 	    return self::NO_METHOD;
 	return self::LOADED;
-    }
+    }    
 }

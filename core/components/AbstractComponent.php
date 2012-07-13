@@ -14,11 +14,6 @@ class AbstractComponent
     {
 	if(isset($this->_vars[$name]))
 	    return $this->_vars[$name];
-	if($name==='db')
-	{
-	    Loader::initDbConnection ();
-	    return $this->_vars['db'];
-	}
 	return false;
     }
     

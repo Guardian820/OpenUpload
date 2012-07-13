@@ -26,6 +26,7 @@ class Core
 	require_once 'components/AbstractComponent'.EXT;
 	require_once 'components/Controller'.EXT;
 	require_once 'components/View'.EXT;
+	require_once 'components/Model'.EXT;
     }
     
     private function autoloading()

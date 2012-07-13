@@ -5,5 +5,8 @@
 </div> 			
 <div class="section_01_right">
     <h1>Site News</h1>
-    liste des news...            
+    <?php foreach($data as $title=>$texte):?>
+	<h3><?php echo $title?></h3>
+	<p><?php echo $texte?></p>
+    <?php endforeach?>
 </div>
