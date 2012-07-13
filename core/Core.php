@@ -2,17 +2,18 @@
 class Core
 {
     public static $config;
-    
+    public static $start_time;
+
+
     protected $_uri;
     protected $_output;
-    protected $start_time;
 
 
     public function __construct()
     {
 	$this->includes();
 	$this->autoloading();
-	$this->start_time=microtime(true);
+	self::$start_time=microtime(true);
 	$this->_uri=&Loader::getClass('Uri', SYS);
 	$this->_output=&Loader::getClass('Output', SYS.'components/');
     }
@@ -53,20 +54,6 @@ class Core
 		    echo 'Erreur inconnue !';
 	    }
 	}
-    }
-    
-    public function benchmarks()
-    {
-	echo '<table>
-                  <tr>
-		      <td>Generation time : </td>
-		      <td>'.number_format(microtime(true)-$this->start_time, 4).' sec</td>
-		  </tr>
-		  <tr>
-		      <td>Memory use : </td>
-		      <td>'.memory_get_usage().' Kb</td>
-		  </tr>
-	      </table>';
     }
     
     public function display()

@@ -4,6 +4,4 @@
  */
 
 return array(
-    'urlHelper'=>SYS.'helpers/',
-    'assetHelper'=>SYS.'helpers/',
 );

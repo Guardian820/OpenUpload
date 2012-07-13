@@ -22,4 +22,3 @@ try{
     $e->getMessage();
 }
 $app->display();
-$app->benchmarks();

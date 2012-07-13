@@ -4,13 +4,13 @@ class urlHelper
     protected $config;
     
     public function __construct() {
-	$this->base_url=&Core::$config;
+	$this->config=&Core::$config;
     }
     
     public function genUrl($controller = 'home', $method = 'index', $vars = array())
     {
 	if(is_array($vars))
-	    $vars = implode ('/', $vars);
+	    $vars = implode('/', $vars);
 	$index = $this->config['rewrite'] ? '' : 'index.php/';
 	return $this->config['base_url'].$index.$controller.'/'.$method.'/'.$vars;
     }
