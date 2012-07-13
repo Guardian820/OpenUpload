@@ -16,7 +16,7 @@
     <div id="templatemo_menu">
         <div id="pettabs" class="indentmenu">
             <ul>
-                  <li><a href="<?php echo $this->urlHelper->genUrl()?>" class="selected">Home</a></li>
+                  <li><a href="<?php echo $this->urlHelper->genUrl()?>" class="selected">Accueil</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="#">Networks</a></li>
                   <li><a href="#">Your Account</a></li>
@@ -84,7 +84,7 @@
     
     <div id="templatemo_footer">    
 	<p>Copyleft 2012 site d'upload Open source par <strong>OpenUpload</strong> - code par <strong>v4vx</strong>, Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a> - <a href="https://github.com/vincent4vx/OpenUpload" target="_blank">Lien GitHub</a></p>
-        <p>Copyright © <?php echo date('Y')?> <a href="#"><strong><?php echo Core::$config['name']?></strong></a></p>
+        <p>Copyright © <?php echo date('Y')?> <a href="<?php echo $this->urlHelper->genUrl()?>"><strong><?php echo Core::$config['name']?></strong></a></p>
 	<p style="text-align: right;margin-right: 10px;">Page généré en <?php echo number_format(microtime(true)-Core::$start_time, 4)?>sec</p>
     </div> <!-- end of footer -->
 	<!--  Free CSS Templates from www.TemplateMo.com  -->

@@ -17,11 +17,6 @@ class AbstractComponent
 	return false;
     }
     
-    public function __set($name, $value)
-    {
-	$this->_vars[$name]=$value;
-    }
-    
     //plus pratique d'écrire $this->load... qui Loader::getClass...
     protected function &load($class, $path)
     {

@@ -5,9 +5,11 @@ class View extends AbstractComponent
     protected $path;
     protected $content;
     protected $vars;
+    
 
 
-    public $pageTitle;
+    public $pageTitle=false;
+    
     
     public function __get($name) {
 	if(isset($this->_vars[$name]))
@@ -16,7 +18,7 @@ class View extends AbstractComponent
     }
 
 
-    public function __construct($file, $folder, array $vars = array())
+    public function __construct($file, $folder, array &$vars = array())
     {
 	$this->file=$file.EXT;
 	$this->path=APP.'views/'.$folder.'/';
@@ -38,20 +40,5 @@ class View extends AbstractComponent
     public function getContent()
     {
 	return $this->content;
-    }
-    
-    public function getCachedView($id, $time=60)
-    {
-	$file=SYS.'cache/'.$id;
-	if(!file_exists($file))
-	    return false;
-	if(filemtime($file) > time() - $time)
-	    return false;
-	return $this->content;
-    }
-    
-    public function cache($id)
-    {
-	file_put_contents(SYS.'cache/'.$id, $this->content);
     }
 }

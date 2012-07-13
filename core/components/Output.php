@@ -5,6 +5,7 @@ class Output extends AbstractComponent
     protected $layout='layout.php';
     public $pageTitle='';
     protected $content='';
+    protected $cacheFile='';
 
 
     public function setLayout($name)
@@ -21,7 +22,8 @@ class Output extends AbstractComponent
     public function view($name, $folder = '',array $vars = array())
     {
 	$this->_view=new View($name, $folder, $vars);
-	$this->pageTitle=$this->_view->pageTitle;
+	if($this->_view->pageTitle!==false)
+	    $this->pageTitle=$this->_view->pageTitle;
 	$this->content.=$this->_view->getContent();
     }
     
@@ -31,5 +33,19 @@ class Output extends AbstractComponent
 	    return;
 	$content=$this->content;
 	include APP.'views/layouts/'.$this->layout;
+    }
+    
+    public function startCache($id, $time=60)
+    {
+	$this->cacheFile=SYS.'cache/'.$id.'.html.cache';
+	if(!file_exists($this->cacheFile) or filemtime($this->cacheFile) + $time < time())
+	    return true;
+	$this->content.=file_get_contents($this->cacheFile);
+	return false;
+    }
+    
+    public function endCache()
+    {
+	file_put_contents($this->cacheFile, $this->content);
     }
 }
