@@ -5,21 +5,11 @@ class View extends AbstractComponent
     protected $path;
     protected $content;
     protected $vars;
-    
-
-
-    public $pageTitle=false;
-    
-    
-    public function __get($name) {
-	if(isset($this->_vars[$name]))
-	    return $this->_vars[$name];
-	return Loader::getClass($name, SYS.'helpers/');
-    }
 
 
     public function __construct($file, $folder, array &$vars = array())
     {
+	parent::__construct();
 	$this->file=$file.EXT;
 	$this->path=APP.'views/'.$folder.'/';
 	$this->vars=&$vars;
@@ -40,5 +30,10 @@ class View extends AbstractComponent
     public function getContent()
     {
 	return $this->content;
+    }
+    
+    public function getVars()
+    {
+	return $this->_vars;
     }
 }

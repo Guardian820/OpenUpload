@@ -5,9 +5,10 @@ class Model extends AbstractComponent
 	parent::__construct();
     }
     
-    public function __get($name) {
+    public function __get($name)
+    {
 	if($name==='db')
-	    return Loader::getClass ('Database', SYS);
+	    return Loader::getClass ('Database');
 	return parent::__get($name);
     }   
     

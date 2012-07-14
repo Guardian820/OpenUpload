@@ -23,17 +23,15 @@ class Loader
 	return self::LOADED;
     }
     
-    public static function &getClass($class, $path='')
+    public static function &getClass($class, $path=null)
     {
 	if(isset(self::$loaded_class[$class]))
 	    return self::$loaded_class[$class];
+	$path=$path===null?Core::$config['classmap'][$class]:$path;
+	if(($state=self::load_class($class, $path))===self::LOADED)
+	    return self::$loaded_class[$class];
 	else
-	{
-	    if(($state=self::load_class($class, $path))===self::LOADED)
-		return self::$loaded_class[$class];
-	    else
-		return $state;
-	}
+	    return $state;
     }
 
     public static function load_page($controller, $method, array $vars)

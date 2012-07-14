@@ -28,11 +28,11 @@ class Database extends PDO
 	}
     }
     
-    public function prepare($statement, $driver_options = 'array()')
+    public function prepare($statement, $driver_options = array())
     {
 	try{
 	    self::$num_req++;
-	    return parent::prepare($statement);
+	    return parent::prepare($statement, $driver_options);
 	}catch(Exception $e)
 	{
 	    exit($e->getMessage());
