@@ -16,7 +16,9 @@ class Output
     public function __get($name) {
 	if(isset($this->_vars[$name]))
 	    return $this->_vars[$name];
-	return Loader::getClass($name);
+	if(is_object($obj=Loader::getClass($name)))
+	    return $obj;
+	return false;
     }
     
     public function view($name, $folder = '',array $vars = array())

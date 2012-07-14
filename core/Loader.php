@@ -27,7 +27,10 @@ class Loader
     {
 	if(isset(self::$loaded_class[$class]))
 	    return self::$loaded_class[$class];
-	$path=$path===null?Core::$config['classmap'][$class]:$path;
+	if($path===null && isset(Core::$config['classmap'][$class]))
+	{
+	    $path=Core::$config['classmap'][$class];
+	}
 	if(($state=self::load_class($class, $path))===self::LOADED)
 	    return self::$loaded_class[$class];
 	else

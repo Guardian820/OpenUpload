@@ -7,7 +7,7 @@
 <meta name="description" content="VOIP Company, css template, free web design layout from TemplateMo.com" />
 <?php echo $this->assetHelper->css('style')?>
 <?php echo $this->assetHelper->css('tabcontent')?>
-
+<?php echo $this->headerInc!==false ? $this->headerInc : ''?>
 </head>
 <body>
 <div id="templatemo_wrapper">
@@ -17,7 +17,7 @@
         <div id="pettabs" class="indentmenu">
             <ul>
                   <li><a href="<?php echo $this->urlHelper->genUrl()?>" class="selected">Accueil</a></li>
-                  <li><a href="#">Services</a></li>
+                  <li><a href="<?php echo $this->urlHelper->genUrl('upload')?>">Upload</a></li>
                   <li><a href="#">Networks</a></li>
                   <li><a href="#">Your Account</a></li>
                   <li><a href="#">About Us</a></li>
@@ -91,4 +91,5 @@
 </div>
 </div>
 </body>
+<?php echo $this->footerInc!==false ? $this->footerInc : ''?>
 </html>
