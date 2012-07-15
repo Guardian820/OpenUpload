@@ -20,6 +20,11 @@ class urlHelper
 	return '<a href="'.$this->genUrl($controller, $method, $vars).'" title="'.$title.'">'.$content.'</a>';
     }
     
+    public function urlLink($url)
+    {
+	return '<a href="'.$url.'">'.$url.'</a>';
+    }
+    
     public function redirect($controller = 'home', $method = 'index', $vars = array())
     {
 	header('location: '.$this->genUrl($controller, $method, $vars));

@@ -16,12 +16,12 @@
     <div id="templatemo_menu">
         <div id="pettabs" class="indentmenu">
             <ul>
-                  <li><a href="<?php echo $this->urlHelper->genUrl()?>" class="selected">Accueil</a></li>
-                  <li><a href="<?php echo $this->urlHelper->genUrl('upload')?>">Upload</a></li>
-                  <li><a href="#">Networks</a></li>
-                  <li><a href="#">Your Account</a></li>
-                  <li><a href="#">About Us</a></li>
-                  <li><a href="#" style="border-right: none;">Contact Us</a></li>
+                  <li><a href="<?php echo $this->urlHelper->genUrl()?>" <?php echo $this->tab===1?'class="selected"':''?>>Accueil</a></li>
+                  <li><a href="<?php echo $this->urlHelper->genUrl('upload')?>" <?php echo $this->tab===2?'class="selected"':''?>>Upload</a></li>
+                  <li><a href="#" <?php echo $this->tab===3?'class="selected"':''?>>Networks</a></li>
+                  <li><a href="#" <?php echo $this->tab===4?'class="selected"':''?>>Your Account</a></li>
+                  <li><a href="#" <?php echo $this->tab===5?'class="selected"':''?>>About Us</a></li>
+                  <li><a href="#" style="border-right: none;" <?php echo $this->tab===6?'class="selected"':''?>>Contact Us</a></li>
             </ul>
         </div>
     </div> <!-- end of mneu -->

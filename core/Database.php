@@ -24,7 +24,7 @@ class Database extends PDO
 	    return parent::query($statement);
 	}catch(Exception $e)
 	{
-	    exit($e->getMessage());
+	    exit('PDO error :<br/>'.$e->getFile().' ligne : '.$e->getLine().'<br/>'.$e->getMessage());
 	}
     }
     
@@ -35,15 +35,21 @@ class Database extends PDO
 	    return parent::prepare($statement, $driver_options);
 	}catch(Exception $e)
 	{
-	    exit($e->getMessage());
+	    exit('PDO error :<br/>'.$e->getFile().' ligne : '.$e->getLine().'<br/>'.$e->getMessage());
 	}
     }
 
 
-    public function execQuery($query, &$param)
+    public function &execQuery($query, &$param)
     {
-	$req = $this->prepare($query);
-	return $req->execute($param);
+	try{
+	    $req = $this->prepare($query);
+	    $req->execute($param);
+	    return $req;
+	}catch(Exception $e)
+	{
+	    exit('PDO error :<br/>'.$e->getFile().' ligne : '.$e->getLine().'<br/>'.$e->getMessage());
+	}
     }
 
 
@@ -68,12 +74,33 @@ class Database extends PDO
 	return $this->execQuery($query, $cond);
     }
     
-    public function create($table, array &$values)
+    public function create($table, array $values)
     {
 	$query='INSERT INTO '.$table.'(';
-	$cols=array_flip($values);
-	$query.=implode(',', $cols).') VALUES (';
+	$cols=array_keys($values);
+	$query.=implode(',', $cols).') VALUES (:';
 	$query.=implode(', :', $cols).')';
 	return $this->execQuery($query, $values);
+    }
+    
+    public function select($table, array $selected, array $cond, $all=false)
+    {
+	$query='SELECT '.implode(',', $selected).' FROM `'.$table.'` WHERE ';
+	foreach(array_keys($cond) as $col)
+	    $query.=$col.' = :'.$col.' ';
+	if($all)
+	    return $this->execQuery($query, $cond)->fetchAll();	
+	return $this->execQuery($query, $cond)->fetch();
+    }
+    
+    public function find($table, array $cond)
+    {
+	return $this->select($table, array('*'), $cond, true);
+    }
+    
+    public function exist($table, array $cond)
+    {
+	$data=$this->select($table, 'COUNT(*)', $cond);
+	return $data['COUNT(*)'] > 0;
     }
 }
