@@ -242,3 +242,46 @@ img {
     background-color: transparent;
     border-radius: 15px;
 }
+
+#upload{
+    width: 100%;
+}
+
+#upload input[type=file]{
+    width: 0;
+    height: 0;
+    opacity:0;
+}
+
+#upload input[type=text]{
+    width: 630px;
+    padding:0;
+    padding-left: 3px;
+    margin-right: -5px;
+    vertical-align: middle;
+    height: 18px;
+    border: 1px solid #AAA;
+    background: #FFF;
+}
+
+#upload input[type=text]:focus{
+    border: 1px solid #e28201;
+    box-shadow: 0 0 3px #e28201;
+}
+
+#upload input[type=submit], #upload button{
+    width: 75px;
+    margin:0;
+    padding: 0;
+    height: 20px;
+    vertical-align: middle;
+    border: 1px solid #AAA;
+    border-radius: 0 10px 10px 0;
+    background: #FFF;
+}
+
+#upload input[type=submit]:hover, #upload button:hover{ 
+    background: #000;
+    color: #FFF;
+    box-shadow: 0 0 3px #CCC;
+}

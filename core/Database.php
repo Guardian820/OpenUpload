@@ -93,11 +93,17 @@ class Database extends PDO
 	return $this->execQuery($query, $cond)->fetch();
     }
     
-    public function find($table, array $cond)
+    public function findAll($table, array $cond)
     {
 	return $this->select($table, array('*'), $cond, true);
     }
     
+    public function find($table, array $cond)
+    {
+	return $this->select($table, array('*'), $cond);
+    }
+
+
     public function exist($table, array $cond)
     {
 	$data=$this->select($table, 'COUNT(*)', $cond);

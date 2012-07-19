@@ -25,7 +25,7 @@ class uploadController extends Controller
 	    move_uploaded_file($file['tmp_name'], ROOT.'upload_dir/'.$file_id);
 	}
 	$size=filesize(ROOT.'upload_dir/'.$file_id);
-	$this->uploadModel->addFile($uid, $file_id, $file['name'], $_POST['descr'], -1, $size, $md5);
+	$this->uploadModel->addFile($uid, $file_id, $file['name'], $_POST['descr'], -1, $size, $md5, $file['type']);
 	$this->urlHelper->redirect('upload', 'success', array($uid));
     }
     

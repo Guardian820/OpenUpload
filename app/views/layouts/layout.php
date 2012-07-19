@@ -18,12 +18,15 @@
             <ul>
                   <li><a href="<?php echo $this->urlHelper->genUrl()?>" <?php echo $this->tab===1?'class="selected"':''?>>Accueil</a></li>
                   <li><a href="<?php echo $this->urlHelper->genUrl('upload')?>" <?php echo $this->tab===2?'class="selected"':''?>>Upload</a></li>
-                  <li><a href="#" <?php echo $this->tab===3?'class="selected"':''?>>Networks</a></li>
+                  <li><a href="#" <?php echo $this->tab===3?'class="selected"':''?>>Fichiers</a></li>
                   <li><a href="#" <?php echo $this->tab===4?'class="selected"':''?>>Your Account</a></li>
                   <li><a href="#" <?php echo $this->tab===5?'class="selected"':''?>>About Us</a></li>
                   <li><a href="#" style="border-right: none;" <?php echo $this->tab===6?'class="selected"':''?>>Contact Us</a></li>
             </ul>
         </div>
+	<div class="tabcontentstyle">
+	    <?php echo $this->tabDescr?>
+	</div>
     </div> <!-- end of mneu -->
    
     <div id="templatemo_banner">
@@ -85,7 +88,7 @@
     <div id="templatemo_footer">    
 	<p>Copyleft 2012 site d'upload Open source par <strong>OpenUpload</strong> - code par <strong>v4vx</strong>, Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a> - <a href="https://github.com/vincent4vx/OpenUpload" target="_blank">Lien GitHub</a></p>
         <p>Copyright © <?php echo date('Y')?> <a href="<?php echo $this->urlHelper->genUrl()?>"><strong><?php echo Core::$config['name']?></strong></a></p>
-	<p style="text-align: right;margin-right: 10px;">Page généré en <?php echo number_format(microtime(true)-Core::$start_time, 4)?>sec</p>
+	<p style="text-align: right;margin-right: 10px;">Page généré en <?php echo number_format(microtime(true)-Core::$start_time, 4)?>sec avec <?php echo class_exists('Database') ? Database::$num_req : 0?> requête(s)</p>
     </div> <!-- end of footer -->
 	<!--  Free CSS Templates from www.TemplateMo.com  -->
 </div>

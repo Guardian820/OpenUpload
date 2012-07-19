@@ -1,7 +1,7 @@
 <?php
 class uploadModel extends Model
 {
-    public function addFile($uid, $file_id, $name, $descr, $user, $size, $md5)
+    public function addFile($uid, $file_id, $name, $descr, $user, $size, $md5, $type)
     {
 	$this->db->create('files', array(
 	    'uid'=>$uid,
@@ -10,16 +10,14 @@ class uploadModel extends Model
 	    'description'=>$descr,
 	    'owner'=>$user,
 	    'size'=>$size,
-	    'md5_sum'=>$md5
+	    'md5_sum'=>$md5,
+	    'type'=>$type,
 	));
     }
     
     public function find($keyFile)
     {
-	$data=$this->db->find('files', array('uid'=>$keyFile));
-	if(count($data)<1)
-	    return false;
-	return $data[0];
+	return $this->db->find('files', array('uid'=>$keyFile));
     }
     
     public function fileExist($md5)

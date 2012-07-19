@@ -1,13 +1,9 @@
 <?php
 class homeController extends Controller
 {
-    public function indexAction($name = 'Guest')
+    public function indexAction()
     {
-	if($this->output->startCache('home'))
-	{
-	    $this->loadModel('test');
-	    $this->output->view('index', 'home', array('name'=>$name,'data'=>$this->testModel->data()));
-	    $this->output->endCache();
-	}
+	//$this->Session->name='azerty';
+	$this->output->view('index', 'home');
     }
 }

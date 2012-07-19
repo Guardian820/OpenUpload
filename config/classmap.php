@@ -14,4 +14,5 @@ return array(
     //helpers
     'urlHelper'=>SYS.'helpers/',
     'assetHelper'=>SYS.'helpers/',
+    'fileHelper'=>SYS.'helpers/',
 );
