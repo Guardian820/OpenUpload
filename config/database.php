@@ -12,5 +12,5 @@ return array(
     //informations de connexion
     //inutile pour sqlite !
     'user'=>'root',
-    'pass'=>'Ariane5ECA'
+    'pass'=>''
 );
